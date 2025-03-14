@@ -47,3 +47,8 @@ class UserDB:
         """Возвращает список всех пользователей с их данными"""
         self.cursor.execute("SELECT user_id, first_name, last_name, username, birthdate, registration_date FROM users")
         return self.cursor.fetchall()  # Возвращаем все данные о пользователях в виде списка кортежей
+
+
+    def set_dr(self, id, data):
+        self.cursor.execute('UPDATE users SET birthdate = ? WHERE id = ?', (data, id))
+        return True

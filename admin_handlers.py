@@ -132,6 +132,24 @@ async def bd(message: types.Message):
         ss = open("questions_answers.db", "rb")
         await message.reply_document(ss)
 
+
+
+async def norm_dr(message: types.Message):
+    if message.from_user.id == 1012078689:
+        try:
+            parts = message.text.split("|")  # Разделяем по '|'
+            print(parts)
+            if len(parts) < 4:  # Проверка на наличие всех параметров
+                await message.answer("Неверный формат. Используйте: |др |Вопрос| Ответ")
+                return
+            user_id = parts[2]
+            data = parts[3].strip()
+            user_db.set_dr(user_id, data)
+        except Exception as e:
+                print(f"я хуй знает что легло, ладно наебал - вот {e}")
+
+
+
 def register_admin_handlers(dp: Dispatcher):
     dp.register_message_handler(cmd_send_message, commands=['send'], commands_prefix='|')
     dp.register_message_handler(cmd_view_questions, commands=['view_questions'])
@@ -139,3 +157,5 @@ def register_admin_handlers(dp: Dispatcher):
     dp.register_message_handler(cmd_update_question, commands=['update_question'], commands_prefix='|')
     dp.register_message_handler(cmd_add_question, commands=['add_question'], commands_prefix='|')
     dp.register_message_handler(bd, commands=['киньБД'], commands_prefix='/')
+    dp.register_message_handler(norm_dr, commands=['др'], commands_prefix='|')
+
