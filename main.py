@@ -20,7 +20,7 @@ bot = Bot(token=API_TOKEN)
 
 async def schedule_birthday_task(bot: Bot, user_db: UserDB):
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(send_birthday_messages, 'cron', hour=10, minute=0, args=[bot, user_db])
+    scheduler.add_job(send_birthday_messages, 'cron', hour=00, minute=4, args=[bot, user_db])
     scheduler.start()
 
 async def on_start():
