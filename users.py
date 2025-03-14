@@ -50,5 +50,12 @@ class UserDB:
 
 
     def set_dr(self, id, data):
-        self.cursor.execute('UPDATE users SET birthdate = ? WHERE id = ?', (data, id))
-        return True
+        try:
+            self.cursor.execute('UPDATE users SET birthdate = ? WHERE id = ?', (data, id))
+            self.connection.commit()  # Не забывайте зафиксировать изменения
+            if self.cursor.rowcount == 0:  # Если ни одна строка не была обновлена
+                return False
+            return True
+        except Exception as e:
+            print(f"Ошибка при обновлении данных: {e}")
+            return False
