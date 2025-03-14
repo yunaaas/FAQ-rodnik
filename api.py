@@ -1,20 +1,23 @@
+import aiohttp
 import asyncio
-from telegram import Bot
 
-TOKEN = '5352353471:AAEeZ4W69c2n-25pN7BDeai-mVV16N0k8Pk'
+async def get_user_birthdate(api_key: str, user_id: int):
+    url = f"https://api.telegram.org/bot{api_key}/getChat"
+    data = {
+        "chat_id": user_id,
+    }
 
-bot = Bot(token=TOKEN)
-
-chat_id = 770629236  #  user_id == chat_id???????????????????
-
-async def get_info():
-    chat_info = await bot.get_chat(chat_id)
-    print(f"Информация о чате: {chat_info}")
-
-    if hasattr(chat_info, 'birthdate') and chat_info.birthdate:
-        print(f"Дата рождения пользователя: {chat_info.birthdate}")
-    else:
-        print("Дата рождения пользователя не указана.")
-
-if __name__ == '__main__':
-    asyncio.run(get_info())
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=data) as response:
+            if response.status == 200:
+                response_json = await response.json()
+                birthdate = response_json.get("result", {}).get('birthdate', None)
+                if birthdate:
+                    day = birthdate.get('day')
+                    month = birthdate.get('month')
+                    if day and month:
+                        return f"{day:02d}.{month:02d}"
+                return None
+            else:
+                print(f"Error: {response.status}")
+                return None

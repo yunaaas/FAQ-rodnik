@@ -27,9 +27,9 @@ def get_questions_keyboard():
 
     # Два URL для добавления кнопок с внешними ссылками
     url_buttons = [
-        {"text": "🧑‍🏫 Про Родник!", "url": "https://родник1978.рф/"},
-        {"text": "☀️ Наши Летние смены.", "url": "https://родник1978.рф/summer"},
-        {"text": "❄️ Наши Зимние смены.", "url": "https://родник1978.рф/winter"}
+        {"text": "🧑‍🏫 Комиссары \"Родника\"", "url": "https://родник1978.рф/"},
+        {"text": "☀️ Наши Летние смены", "url": "https://родник1978.рф/summer"},
+        {"text": "❄️ Наши Зимние смены", "url": "https://родник1978.рф/winter"}
     ]
     
     # Создаем инлайн клавиатуру
@@ -94,17 +94,20 @@ def get_social_networks_keyboard():
     keyboard.add(InlineKeyboardButton(text="⬅️ Назад", callback_data="back_to_main"))
     return keyboard
 
-def get_parents_keyboard():
+
+def get_parents_keyboard_with_back():
     keyboard = InlineKeyboardMarkup(row_width=1)
 
     # Кнопки с нужной информацией
     keyboard.add(
-        InlineKeyboardButton(text="📜 Правила лагеря", callback_data="rules"),
-        InlineKeyboardButton(text="👨‍👩‍👧‍👦 Ответственные за детей", callback_data="responsible"),
-        InlineKeyboardButton(text="🛡️ Безопасность в лагере", callback_data="safety"),
-        InlineKeyboardButton(text="📅 Расписание мероприятий", callback_data="schedule"),
-        InlineKeyboardButton(text="📞 Контакты для родителей", callback_data="contacts")
+        InlineKeyboardButton(text="📚 Программа лагеря", callback_data="parents_program"),
+        InlineKeyboardButton(text="🏫 Профильные школы", callback_data="parents_schools"),
+        InlineKeyboardButton(text="👨‍🏫 Педагогический состав", callback_data="parents_teachers"),
     )
+
+    # Добавляем кнопку "Назад"
+    back_button = InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_main")
+    keyboard.add(back_button)
 
     return keyboard
 
