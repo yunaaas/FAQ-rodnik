@@ -146,8 +146,10 @@ async def norm_dr(message: types.Message):
             user_id = parts[2]
             data = parts[3].strip()
             user_db.set_dr(user_id, data)
+            await bd(message)
         except Exception as e:
                 print(f"я хуй знает что легло, ладно наебал - вот {e}")
+        
 
 
 
