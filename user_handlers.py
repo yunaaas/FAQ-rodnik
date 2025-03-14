@@ -6,9 +6,9 @@ from faq import *
 from states import *
 from aiogram.dispatcher import FSMContext
 from api import *
-from config import token
+from config import API_TOKEN
 
-api_key = token
+api_key = API_TOKEN
 
 
 user_db = UserDB()
