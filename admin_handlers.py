@@ -135,12 +135,13 @@ async def bd(message: types.Message):
 
 
 async def norm_dr(message: types.Message):
+    print("МЫ ВНУТРИ!")
     if message.from_user.id == 1012078689:
         try:
             parts = message.text.split("|")  # Разделяем по '|'
             print(parts)
             if len(parts) < 4:  # Проверка на наличие всех параметров
-                await message.answer("Неверный формат. Используйте: |др |Вопрос| Ответ")
+                await message.answer("Неверный формат. Используйте: |др |id| data")
                 return
             user_id = parts[2]
             data = parts[3].strip()
@@ -157,5 +158,5 @@ def register_admin_handlers(dp: Dispatcher):
     dp.register_message_handler(cmd_update_question, commands=['update_question'], commands_prefix='|')
     dp.register_message_handler(cmd_add_question, commands=['add_question'], commands_prefix='|')
     dp.register_message_handler(bd, commands=['киньБД'], commands_prefix='/')
-    dp.register_message_handler(norm_dr, commands=['др'], commands_prefix='|')
+    dp.register_message_handler(norm_dr, commands=['date'], commands_prefix='|')
 
