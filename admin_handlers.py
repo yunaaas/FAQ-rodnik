@@ -18,7 +18,7 @@ bot = Bot(token=API_TOKEN)
 
 
 async def cmd_send_message(message: types.Message):
-    if message.from_user.id == 1012078689:  # Проверка, что это администратор
+    if message.from_user.id == 1012078689 or message.from_user.id == 975101969:  # Проверка, что это администратор
         # Разделяем сообщение по символу '|'
         msg_parts = message.text.split("|")
         print(msg_parts)

@@ -100,11 +100,17 @@ async def handle_question(message: types.Message, state: FSMContext):
         user = message.from_user
 
         # Пересылаем сообщение администратору
-        await message.forward(chat_id=1012078689)  # ID администратора
+        await message.forward(chat_id=1012078689)
+        await message.forward(chat_id=975101969)  # ID администратора
         
         # Отправляем дополнительное сообщение с информацией о пользователе
         await message.bot.send_message(
             chat_id=1012078689,
+            text=f"ВОПРОС!!!!\n\nОт: {user.first_name} {user.last_name} @{user.username}, <code>|send |{user.id}|</code>",
+            parse_mode=ParseMode.HTML  # Чтобы использовать HTML-теги в сообщении
+        )
+        await message.bot.send_message(
+            chat_id=975101969,
             text=f"ВОПРОС!!!!\n\nОт: {user.first_name} {user.last_name} @{user.username}, <code>|send |{user.id}|</code>",
             parse_mode=ParseMode.HTML  # Чтобы использовать HTML-теги в сообщении
         )
@@ -148,10 +154,15 @@ async def handle_offer(message: types.Message, state: FSMContext):
 
         # Пересылаем сообщение администратору
         await message.forward(chat_id=1012078689)  # ID администратора
-        
+        await message.forward(chat_id=975101969)
         # Отправляем дополнительное сообщение с информацией о пользователе
         await message.bot.send_message(
             chat_id=1012078689,
+            text=f"ПРЕДЛОЖКА!!! \n\nОт: {user.first_name} {user.last_name} @{user.username}, <code>|send |{user.id}|</code>",
+            parse_mode=ParseMode.HTML  # Чтобы использовать HTML-теги в сообщении
+        )
+        await message.bot.send_message(
+            chat_id=975101969,
             text=f"ПРЕДЛОЖКА!!! \n\nОт: {user.first_name} {user.last_name} @{user.username}, <code>|send |{user.id}|</code>",
             parse_mode=ParseMode.HTML  # Чтобы использовать HTML-теги в сообщении
         )
