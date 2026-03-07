@@ -16,4 +16,4 @@ bot = Bot(token=API_TOKEN)
 if not API_TOKEN:
     raise ValueError("BOT_TOKEN не найден в переменных окружения!")
 
-YOUR_ADMIN_ID = 1012078689 
+YOUR_ADMIN_ID = [1012078689, 1612789346]

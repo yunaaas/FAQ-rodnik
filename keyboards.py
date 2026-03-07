@@ -6,6 +6,12 @@ faq_db = QuestionAnswerDB()
 
 def get_start_keyboard():
     keyboard = InlineKeyboardMarkup(row_width=1)
+    
+    # Две новые кнопки друг под другом вверху
+    keyboard.add(InlineKeyboardButton(text="🎴 Получить открытку", callback_data="get_card"))
+    keyboard.add(InlineKeyboardButton(text="🌷 Начать принимать поздравления", callback_data="start_greetings"))
+    
+    # Основные кнопки в ряд
     keyboard.row(
         InlineKeyboardButton(text="📩 Предложка", callback_data="offer"),
         InlineKeyboardButton(text="🧸 Для родителей", callback_data="parrents")
@@ -18,7 +24,6 @@ def get_start_keyboard():
     keyboard.add(InlineKeyboardButton(text="🌐 Наши социальные сети", callback_data="social"))
     
     return keyboard
-
 
 
 def get_questions_keyboard():
