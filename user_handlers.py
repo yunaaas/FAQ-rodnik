@@ -22,7 +22,7 @@ from urllib.parse import quote
 from aiogram.types import InputFile
 
 # Константы
-BOT_USERNAME = "@proiskatel_bot"  # Замените на username вашего бота
+BOT_USERNAME = "proiskatel_bot"  # Замените на username вашего бота
 
 async def process_start_greetings(callback_query: types.CallbackQuery):
     """Обработчик кнопки 'Начать принимать поздравления'"""
